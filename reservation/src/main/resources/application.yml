@@ -1,0 +1,52 @@
+spring:
+  jmx:
+    enabled: false
+
+  profiles:
+    active: mysql # Activer le profil MySQL
+
+  datasource:
+    driverClassName: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/LundiMatin?useSSL=false&serverTimezone=UTC
+    username: zenika
+    password: zenika
+
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+    generate-ddl: false
+    hibernate:
+      ddl-auto: update
+
+server:
+  port: 8090
+
+# TODO: Make sure to always enable security in production
+security:
+  basic:
+    enabled: false
+
+# Management endpoints on a separate port
+management:
+  port: 8091
+  security:
+    enabled: false # Management port is internal only. No need to secure it.
+
+# Default project info followed by actual injected pom-specified values.
+project:
+  name: reservation
+  version: 0.1
+  description: reservation
+
+info:
+  build:
+    artifact: ${project.artifactId}
+    name: ${project.name}
+    description: ${project.description}
+    version: ${project.version}
+
+hotel.service:
+  name: 'default profile:'
+
+logging:
+  file: boot_example.log
+  org.hibernate: INFO
